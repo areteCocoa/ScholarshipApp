@@ -27,21 +27,29 @@
                                 <color key="backgroundColor" white="0.42020539314516131" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                             </view>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n4P-dn-xrH">
+                                <color key="backgroundColor" white="0.0" alpha="0.23999999999999999" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="2nC-kI-qcu"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="BVV-ew-gqr"/>
+                            <constraint firstItem="n4P-dn-xrH" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Bsc-Pg-h4X"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="top" secondItem="3" secondAttribute="top" constant="405" id="NRs-D2-h9N"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="VDA-ko-bTw"/>
                             <constraint firstAttribute="bottom" secondItem="Q0g-NO-Z76" secondAttribute="bottom" constant="55" id="VIc-h9-JmW"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Xt8-h6-4co"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="jzW-pP-rBd"/>
+                            <constraint firstItem="n4P-dn-xrH" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="opJ-sK-WPh"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="r0R-Cj-Dg4"/>
+                            <constraint firstItem="n4P-dn-xrH" firstAttribute="top" secondItem="3" secondAttribute="top" constant="374" id="y2I-eO-vfw"/>
+                            <constraint firstAttribute="bottom" secondItem="n4P-dn-xrH" secondAttribute="bottom" constant="38" id="zWK-kf-vnT"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contentView" destination="Q0g-NO-Z76" id="e04-xm-Emq"/>
+                        <outlet property="dateView" destination="n4P-dn-xrH" id="B9d-g8-Evd"/>
                         <outlet property="progressBar" destination="Diu-FW-oVM" id="UfM-AK-nPl"/>
                         <outlet property="timelineView" destination="OCM-62-z2p" id="QXJ-pY-OhT"/>
                     </connections>
@@ -58,6 +66,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TRTimelineViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="dateView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="progressBar" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="timelineView" candidateClass="UIView"/>
             </relationships>

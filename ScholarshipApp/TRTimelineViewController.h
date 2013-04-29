@@ -14,6 +14,7 @@
 
 @property (nonatomic, retain) IBOutlet UIView *timelineView;
 @property (nonatomic, retain) IBOutlet UIView *contentView;
+@property (nonatomic, retain) IBOutlet UIView *dateView;
 @property (nonatomic, retain) IBOutlet UIProgressView *progressBar;
 
 @property (nonatomic, retain, readonly) NSDictionary* nodes;
