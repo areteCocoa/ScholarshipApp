@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		542DA861172E441A007A4203 /* TRTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542DA860172E441A007A4203 /* TRTimelineViewController.m */; };
 		54A5C756172C5FEE009EA073 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A5C755172C5FEE009EA073 /* UIKit.framework */; };
 		54A5C758172C5FEE009EA073 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A5C757172C5FEE009EA073 /* Foundation.framework */; };
 		54A5C75A172C5FEE009EA073 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A5C759172C5FEE009EA073 /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		542DA85F172E441A007A4203 /* TRTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTimelineViewController.h; sourceTree = "<group>"; };
+		542DA860172E441A007A4203 /* TRTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTimelineViewController.m; sourceTree = "<group>"; };
 		54A5C752172C5FEE009EA073 /* ScholarshipApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScholarshipApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A5C755172C5FEE009EA073 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		54A5C757172C5FEE009EA073 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -84,6 +87,8 @@
 			isa = PBXGroup;
 			children = (
 				54A5C764172C5FEE009EA073 /* TRAppDelegate.h */,
+				542DA85F172E441A007A4203 /* TRTimelineViewController.h */,
+				542DA860172E441A007A4203 /* TRTimelineViewController.m */,
 				54A5C765172C5FEE009EA073 /* TRAppDelegate.m */,
 				54A5C76D172C5FEE009EA073 /* MainStoryboard.storyboard */,
 				54A5C770172C5FEE009EA073 /* TRViewController.h */,
@@ -177,6 +182,7 @@
 				54A5C762172C5FEE009EA073 /* main.m in Sources */,
 				54A5C766172C5FEE009EA073 /* TRAppDelegate.m in Sources */,
 				54A5C772172C5FEE009EA073 /* TRViewController.m in Sources */,
+				542DA861172E441A007A4203 /* TRTimelineViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +305,7 @@
 				54A5C777172C5FEE009EA073 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
