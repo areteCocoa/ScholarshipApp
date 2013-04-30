@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5405DEA0172F6EBF00B688A5 /* node.png in Resources */ = {isa = PBXBuildFile; fileRef = 5405DE9F172F6EBF00B688A5 /* node.png */; };
+		5405DEA2172F8E2300B688A5 /* node_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 5405DEA1172F8E2300B688A5 /* node_big.png */; };
+		5405DEA4172F901D00B688A5 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5405DEA3172F901D00B688A5 /* timeline.png */; };
+		5405DEA7172F929300B688A5 /* TRDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5405DEA6172F929300B688A5 /* TRDialogView.m */; };
 		542DA861172E441A007A4203 /* TRTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542DA860172E441A007A4203 /* TRTimelineViewController.m */; };
 		54A5C756172C5FEE009EA073 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A5C755172C5FEE009EA073 /* UIKit.framework */; };
 		54A5C758172C5FEE009EA073 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A5C757172C5FEE009EA073 /* Foundation.framework */; };
@@ -22,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5405DE9F172F6EBF00B688A5 /* node.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = node.png; sourceTree = "<group>"; };
+		5405DEA1172F8E2300B688A5 /* node_big.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = node_big.png; sourceTree = "<group>"; };
+		5405DEA3172F901D00B688A5 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
+		5405DEA5172F929300B688A5 /* TRDialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRDialogView.h; sourceTree = "<group>"; };
+		5405DEA6172F929300B688A5 /* TRDialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRDialogView.m; sourceTree = "<group>"; };
 		542DA85F172E441A007A4203 /* TRTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTimelineViewController.h; sourceTree = "<group>"; };
 		542DA860172E441A007A4203 /* TRTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTimelineViewController.m; sourceTree = "<group>"; };
 		54A5C752172C5FEE009EA073 /* ScholarshipApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScholarshipApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -86,9 +95,14 @@
 		54A5C75B172C5FEE009EA073 /* ScholarshipApp */ = {
 			isa = PBXGroup;
 			children = (
+				5405DEA3172F901D00B688A5 /* timeline.png */,
+				5405DEA1172F8E2300B688A5 /* node_big.png */,
+				5405DE9F172F6EBF00B688A5 /* node.png */,
 				54A5C764172C5FEE009EA073 /* TRAppDelegate.h */,
 				542DA85F172E441A007A4203 /* TRTimelineViewController.h */,
 				542DA860172E441A007A4203 /* TRTimelineViewController.m */,
+				5405DEA5172F929300B688A5 /* TRDialogView.h */,
+				5405DEA6172F929300B688A5 /* TRDialogView.m */,
 				54A5C765172C5FEE009EA073 /* TRAppDelegate.m */,
 				54A5C76D172C5FEE009EA073 /* MainStoryboard.storyboard */,
 				54A5C770172C5FEE009EA073 /* TRViewController.h */,
@@ -169,6 +183,9 @@
 				54A5C76A172C5FEE009EA073 /* Default@2x.png in Resources */,
 				54A5C76C172C5FEE009EA073 /* Default-568h@2x.png in Resources */,
 				54A5C76F172C5FEE009EA073 /* MainStoryboard.storyboard in Resources */,
+				5405DEA0172F6EBF00B688A5 /* node.png in Resources */,
+				5405DEA2172F8E2300B688A5 /* node_big.png in Resources */,
+				5405DEA4172F901D00B688A5 /* timeline.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +200,7 @@
 				54A5C766172C5FEE009EA073 /* TRAppDelegate.m in Sources */,
 				54A5C772172C5FEE009EA073 /* TRViewController.m in Sources */,
 				542DA861172E441A007A4203 /* TRTimelineViewController.m in Sources */,
+				5405DEA7172F929300B688A5 /* TRDialogView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
