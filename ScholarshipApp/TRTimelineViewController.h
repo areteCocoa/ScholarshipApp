@@ -11,6 +11,7 @@
 @interface TRTimelineViewController : UIViewController
 
 - (void)timelineInteracted: (UIGestureRecognizer*)sender;
+- (void)displayID: (int)ID;
 
 @property (nonatomic, retain) IBOutlet UIView *timelineView;
 @property (nonatomic, retain) IBOutlet UIView *contentView;

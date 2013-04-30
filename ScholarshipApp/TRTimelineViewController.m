@@ -25,6 +25,8 @@
 @property NSDate *minimumDate;
 @property NSDate *maximumDate;
 
+@property BOOL isDoneAnimating;
+
 @end
 
 @implementation TRTimelineViewController
@@ -62,6 +64,8 @@
     
     self.timelineView.userInteractionEnabled = YES;
     [self.timelineView addGestureRecognizer:timelineRecognizer];
+    
+    [NSTimer timerWithTimeInterval:1 target:self selector:@selector(displayID:) userInfo:self repeats:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,13 +87,24 @@
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy m dd"];
         
-        NSString *birthDate = [NSString stringWithFormat:@"%d %d %d", 1996, 1, 30];
-        NSDate *birthday = [formatter dateFromString:birthDate];
+        // Some constants
+        // NSString *birthDate = [NSString stringWithFormat:@"%d %d %d", 1996, 1, 30];
+        // NSDate *birthday = [formatter dateFromString:birthDate];
         
-        NSArray *unsortedDates = @[[NSDate dateWithTimeIntervalSinceNow:0], birthday, [NSDate dateWithTimeIntervalSinceNow:500000000], [NSDate dateWithTimeIntervalSinceNow:2000000]];
+        NSString *EVString1 = [NSString stringWithFormat:@"2012 7 26"]; // First Day
+        NSString *EVString2 = [NSString stringWithFormat:@"2012 8 12"]; // First "presentable" build
+        NSString *EVString3 = [NSString stringWithFormat:@"2013 2 23"]; // Coming up to due date
+        NSString *EVString4 = [NSString stringWithFormat:@"2013 3 2"];  // Science Fair due date (add picture of medal)
+        
+        NSDate *EVDate1 = [formatter dateFromString:EVString1];
+        NSDate *EVDate2 = [formatter dateFromString:EVString2];
+        NSDate *EVDate3 = [formatter dateFromString:EVString3];
+        NSDate *EVDate4 = [formatter dateFromString:EVString4];
+        
+        NSArray *unsortedDates = @[[NSDate dateWithTimeIntervalSinceNow:0], EVDate1, EVDate2, EVDate3, EVDate4];
         dates = [self sortDateArray:unsortedDates];
         
-        NSArray *contentProgress = @[@"The day I was born", @"Today", @"Sometime in the future", @"Way in the future"];
+        NSArray *contentProgress = @[@"Started Evolution Simulator", @"First 'working' build", @"Days before due date", @"Due date, final product", @"Today"];
         
         self.nodes = [[NSDictionary alloc] initWithObjects:contentProgress forKeys:dates];
         
@@ -128,12 +143,12 @@
 }
 
 - (void)displayID: (int)ID {
-    if (ID != self.currentID) {
+    if (ID != self.currentID && [self.dateLabel.layer animationKeys].count <= 0) {
         NSDate *indexedDate = [self.dates objectAtIndex:ID];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterShortStyle];
         
-        [self.dateLabel removeFromSuperview];
+        // [self.dateLabel removeFromSuperview];
         
         CGFloat x = ((UIImageView*)[self.nodeImageViews objectAtIndex:ID]).frame.origin.x;
         CGFloat width = self.nodeWidth;
@@ -148,13 +163,24 @@
             x = self.dateView.frame.size.width - width - 10;
         }
         
-        [self.dateLabel setFrame:CGRectMake(x, 0, self.nodeWidth, self.dateView.frame.size.height-15)];
+        
         self.dateLabel.dateText = [formatter stringFromDate:indexedDate];
         
         if (![[self.dateView subviews] containsObject:self.dateLabel]) {
             [self.dateView addSubview:self.dateLabel];
+            [self.dateLabel setFrame:CGRectMake(x, 0, self.nodeWidth, self.dateView.frame.size.height-15)];
+            [self.dateView setNeedsDisplay];
+            self.isDoneAnimating = YES;
+        } else if(self.isDoneAnimating){
+            self.isDoneAnimating = NO;
+            [UIView animateWithDuration:0.2 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                [self.dateLabel setFrame:CGRectMake(x, 0, self.nodeWidth, self.dateView.frame.size.height-15)];
+            }completion:^(BOOL finished) {
+                self.isDoneAnimating = YES;
+            }];
+        } else {
+            
         }
-        [self.dateView setNeedsDisplay];
         
         contentLabel.text = [self.nodes objectForKey:indexedDate];
         
@@ -199,7 +225,7 @@
 
 - (void)setNodes:(NSDictionary *)nodes {
     _nodes = nodes;
-    self.nodeWidth = self.view.frame.size.width/_nodes.count;
+    self.nodeWidth = self.view.frame.size.width/4;
 }
 
 - (TRDialogView*)dateLabel {
