@@ -12,6 +12,7 @@
 @interface TRDialogView ()
 
 @property (nonatomic, retain) UILabel *dateLabel;
+@property CGPoint focusPoint;
 
 @end
 
@@ -42,10 +43,15 @@
     return self;
 }
 
+- (void)setFocusCGFloatX: (CGFloat) x {
+    
+}
+
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
+    /*
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     CGContextSetRGBFillColor(context, .5, .5, .5, .5);
@@ -59,6 +65,7 @@
     CGContextAddLineToPoint(context, (rightPoint.x + leftPoint.x)/2, rightPoint.y + 8);
     CGContextAddLineToPoint(context, rightPoint.x, rightPoint.y);
     CGContextFillPath(context);
+     */
 }
 
 - (NSString*)dateText {

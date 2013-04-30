@@ -40,17 +40,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OCM-62-z2p" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="2nC-kI-qcu"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="BVV-ew-gqr"/>
                             <constraint firstItem="n4P-dn-xrH" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Bsc-Pg-h4X"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="top" secondItem="3" secondAttribute="top" constant="405" id="NRs-D2-h9N"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="VDA-ko-bTw"/>
                             <constraint firstAttribute="bottom" secondItem="Q0g-NO-Z76" secondAttribute="bottom" constant="55" id="VIc-h9-JmW"/>
-                            <constraint firstItem="OCM-62-z2p" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Xt8-h6-4co"/>
+                            <constraint firstItem="n4P-dn-xrH" firstAttribute="centerX" secondItem="OCM-62-z2p" secondAttribute="centerX" type="default" id="bPk-Yr-nHY"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="jzW-pP-rBd"/>
                             <constraint firstItem="n4P-dn-xrH" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="opJ-sK-WPh"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="r0R-Cj-Dg4"/>
                             <constraint firstItem="n4P-dn-xrH" firstAttribute="top" secondItem="3" secondAttribute="top" constant="374" id="y2I-eO-vfw"/>
+                            <constraint firstItem="OCM-62-z2p" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="10" id="yKY-2H-RWH"/>
                             <constraint firstAttribute="bottom" secondItem="n4P-dn-xrH" secondAttribute="bottom" constant="38" id="zWK-kf-vnT"/>
                         </constraints>
                     </view>

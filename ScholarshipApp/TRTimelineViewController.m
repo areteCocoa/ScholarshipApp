@@ -49,8 +49,9 @@
     [super viewDidLoad];
 	
     // Add timeline image to timeline view
-    UIImage *timelineImage = [UIImage imageNamed:@"timeline.png"];
-    [self.timelineView addSubview:[[UIImageView alloc] initWithImage:timelineImage]];
+    UIImageView *timelineImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timeline.png"]];
+    timelineImageView.layer.opacity = .3;
+    [self.timelineView addSubview:timelineImageView];
     
     // init dictionary to be displayed
     [self getNodes];
@@ -85,34 +86,30 @@
         NSLog(@"Timeline has no nodes!");
         
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"yyyy m dd"];
+        [formatter setDateFormat:@"yyyy MM dd"];
         
         // Some constants
         // NSString *birthDate = [NSString stringWithFormat:@"%d %d %d", 1996, 1, 30];
         // NSDate *birthday = [formatter dateFromString:birthDate];
         
-        NSString *EVString1 = [NSString stringWithFormat:@"2012 7 26"]; // First Day
-        NSString *EVString2 = [NSString stringWithFormat:@"2012 8 12"]; // First "presentable" build
-        NSString *EVString3 = [NSString stringWithFormat:@"2013 2 23"]; // Coming up to due date
-        NSString *EVString4 = [NSString stringWithFormat:@"2013 3 2"];  // Science Fair due date (add picture of medal)
+        NSDate *EVDate1 = [formatter dateFromString:@"2012 07 26"];
+        NSDate *EVDate2 = [formatter dateFromString:@"2012 08 12"];
+        NSDate *EVDate3 = [formatter dateFromString:@"2013 02 23"];
+        NSDate *EVDate4 = [formatter dateFromString:@"2013 03 02"];
         
-        NSDate *EVDate1 = [formatter dateFromString:EVString1];
-        NSDate *EVDate2 = [formatter dateFromString:EVString2];
-        NSDate *EVDate3 = [formatter dateFromString:EVString3];
-        NSDate *EVDate4 = [formatter dateFromString:EVString4];
-        
-        NSArray *unsortedDates = @[[NSDate dateWithTimeIntervalSinceNow:0], EVDate1, EVDate2, EVDate3, EVDate4];
+        NSArray *unsortedDates = @[[NSDate dateWithTimeIntervalSinceNow:0], EVDate1, EVDate2, EVDate3, EVDate4, [NSDate dateWithTimeIntervalSinceNow:60*60*24*5]];
         dates = [self sortDateArray:unsortedDates];
         
-        NSArray *contentProgress = @[@"Started Evolution Simulator", @"First 'working' build", @"Days before due date", @"Due date, final product", @"Today"];
+        NSArray *contentProgress = @[@"Started Evolution Simulator", @"First 'working' build", @"Days before due date", @"Due date, final product", @"Today", [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timeline.png"]]];
         
         self.nodes = [[NSDictionary alloc] initWithObjects:contentProgress forKeys:dates];
         
         double minimumDate = [[dates objectAtIndex:0] timeIntervalSince1970];
         double maximumDate = [[dates lastObject] timeIntervalSince1970];
         double dateIncrement;
-        double width = [[UIScreen mainScreen] bounds].size.width;
+        // double width = [[UIScreen mainScreen] bounds].size.width
         UIImage *node = [UIImage imageNamed:@"node.png"];
+        double width = 300.0-node.size.width;
         
         for (NSDate *date in self.dates) {
             dateIncrement = ([date timeIntervalSince1970]-minimumDate)/(maximumDate-minimumDate);
@@ -120,7 +117,7 @@
             UITapGestureRecognizer *imageRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
                                                                                               action:@selector(imageTapped:)];
             
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(dateIncrement*width - (node.size.width/2), 20, node.size.width, node.size.height)];
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(dateIncrement*width, 20, node.size.width, node.size.height)];
             imageView.userInteractionEnabled = YES;
             [imageView addGestureRecognizer:imageRecognizer];
             imageView.image = node;
@@ -144,17 +141,22 @@
 
 - (void)displayID: (int)ID {
     if (ID != self.currentID && [self.dateLabel.layer animationKeys].count <= 0) {
+        // Move the dateLabel
         NSDate *indexedDate = [self.dates objectAtIndex:ID];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         [formatter setDateStyle:NSDateFormatterShortStyle];
         
         // [self.dateLabel removeFromSuperview];
         
-        CGFloat x = ((UIImageView*)[self.nodeImageViews objectAtIndex:ID]).frame.origin.x;
+        UIImageView *indexedImage = ((UIImageView*)[self.nodeImageViews objectAtIndex:ID]);
+        CGFloat x = indexedImage.frame.origin.x + (self.dateLabel.frame.size.width)/2;
         CGFloat width = self.nodeWidth;
         
+        x -= width;
         if (x > self.dateView.frame.size.width/2) {
-            x -= width;
+            x += indexedImage.frame.size.width/2;
+        } else {
+            x -= indexedImage.frame.size.width/2;
         }
         
         if (x < 10) {
@@ -182,14 +184,25 @@
             
         }
         
-        contentLabel.text = [self.nodes objectForKey:indexedDate];
+        // Change the content
+        id contentObject = [self.nodes objectForKey:indexedDate];
+        for (UIView *view in [self.contentView subviews]) {
+            [view removeFromSuperview];
+        }
+        if ([contentObject isKindOfClass:[NSString class]]) {
+            contentLabel.text = [self.nodes objectForKey:indexedDate];
+            [self.contentView addSubview:self.contentLabel];
+        } else if([contentObject isKindOfClass:[UIView class]]) {
+            [self.contentView addSubview:contentObject];
+        }
         
+        
+        
+        // Edit the timeline to show selected node
         UIImageView *lastIndexImage = [self.nodeImageViews objectAtIndex:self.currentID];
-        // [lastIndexImage setFrame:CGRectMake(lastIndexImage.frame.origin.x, 20, lastIndexImage.frame.size.width, lastIndexImage.frame.size.height)];
         lastIndexImage.image = [UIImage imageNamed:@"node.png"];
         
-        UIImageView *indexedImage = [self.nodeImageViews objectAtIndex:ID];
-        //[indexedImage setFrame:CGRectMake(indexedImage.frame.origin.x, indexedImage.frame.origin.y-10, indexedImage.frame.size.width, indexedImage.frame.size.height)];
+        indexedImage = [self.nodeImageViews objectAtIndex:ID];
         indexedImage.image = [UIImage imageNamed:@"node_big.png"];
         
         self.currentID = ID;
