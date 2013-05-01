@@ -44,7 +44,7 @@
 		542DA85F172E441A007A4203 /* TRTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTimelineViewController.h; sourceTree = "<group>"; };
 		542DA860172E441A007A4203 /* TRTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTimelineViewController.m; sourceTree = "<group>"; };
 		544FDA371730B50400D9BCF6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
-		54A5C752172C5FEE009EA073 /* ScholarshipApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScholarshipApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		54A5C752172C5FEE009EA073 /* Timeline Me.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Timeline Me.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54A5C755172C5FEE009EA073 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		54A5C757172C5FEE009EA073 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		54A5C759172C5FEE009EA073 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,7 +98,7 @@
 		54A5C753172C5FEE009EA073 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				54A5C752172C5FEE009EA073 /* ScholarshipApp.app */,
+				54A5C752172C5FEE009EA073 /* Timeline Me.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -179,7 +179,7 @@
 			);
 			name = ScholarshipApp;
 			productName = ScholarshipApp;
-			productReference = 54A5C752172C5FEE009EA073 /* ScholarshipApp.app */;
+			productReference = 54A5C752172C5FEE009EA073 /* Timeline Me.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
