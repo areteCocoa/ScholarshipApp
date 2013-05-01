@@ -13,6 +13,4 @@
 @property (nonatomic, retain) NSString *dateText;
 @property CGPoint   target;
 
-- (void)setFocusCGFloatX: (CGFloat) x;
-
 @end

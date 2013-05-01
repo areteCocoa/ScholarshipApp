@@ -14,20 +14,51 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q0g-NO-Z76">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKi-rT-Bui">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Touch the timeline below!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="kKi-rT-Bui">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="ofQ-IB-h3D"/>
+                                            <constraint firstAttribute="height" constant="58" id="pKt-1p-FhF"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="phf-JW-Pl9">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="164" id="vXb-6x-Vkv"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGJ-Gz-PJF">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="19" id="Vhw-FR-Eq2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Swipe Left+Right to change date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="y1y-JW-f5j">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="92" id="s6X-VA-okE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="17"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="kKi-rT-Bui" firstAttribute="top" secondItem="Q0g-NO-Z76" secondAttribute="top" constant="169" id="4aM-J6-Zqm"/>
+                                    <constraint firstAttribute="bottom" secondItem="y1y-JW-f5j" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="1Sa-6E-Aou"/>
+                                    <constraint firstItem="y1y-JW-f5j" firstAttribute="leading" secondItem="Q0g-NO-Z76" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4J1-Pp-6Dm"/>
+                                    <constraint firstItem="jGJ-Gz-PJF" firstAttribute="leading" secondItem="Q0g-NO-Z76" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="4cw-OM-R5N"/>
+                                    <constraint firstItem="jGJ-Gz-PJF" firstAttribute="top" secondItem="phf-JW-Pl9" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4k7-rw-bRa"/>
                                     <constraint firstAttribute="trailing" secondItem="kKi-rT-Bui" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="FFD-Y6-zH0"/>
                                     <constraint firstItem="kKi-rT-Bui" firstAttribute="leading" secondItem="Q0g-NO-Z76" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="OAS-Mt-vOi"/>
+                                    <constraint firstItem="phf-JW-Pl9" firstAttribute="top" secondItem="kKi-rT-Bui" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OyX-jh-0fB"/>
+                                    <constraint firstAttribute="trailing" secondItem="jGJ-Gz-PJF" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="SbC-B1-An5"/>
+                                    <constraint firstItem="y1y-JW-f5j" firstAttribute="top" secondItem="jGJ-Gz-PJF" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Zpa-Us-AEy"/>
+                                    <constraint firstAttribute="trailing" secondItem="y1y-JW-f5j" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="kr0-Nf-3ZS"/>
+                                    <constraint firstAttribute="trailing" secondItem="phf-JW-Pl9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="or9-dW-cLw"/>
+                                    <constraint firstItem="kKi-rT-Bui" firstAttribute="top" secondItem="Q0g-NO-Z76" secondAttribute="top" constant="20" symbolic="YES" type="default" id="pEi-gV-cws"/>
+                                    <constraint firstItem="phf-JW-Pl9" firstAttribute="leading" secondItem="Q0g-NO-Z76" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="y8c-33-rqE"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCM-62-z2p">
@@ -40,25 +71,27 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="n4P-dn-xrH" secondAttribute="bottom" constant="32" id="8xD-3y-dVN"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="BVV-ew-gqr"/>
                             <constraint firstItem="n4P-dn-xrH" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Bsc-Pg-h4X"/>
-                            <constraint firstItem="OCM-62-z2p" firstAttribute="top" secondItem="3" secondAttribute="top" constant="405" id="NRs-D2-h9N"/>
+                            <constraint firstItem="n4P-dn-xrH" firstAttribute="top" secondItem="3" secondAttribute="top" constant="380" id="G6u-w0-fuN"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="VDA-ko-bTw"/>
-                            <constraint firstAttribute="bottom" secondItem="Q0g-NO-Z76" secondAttribute="bottom" constant="55" id="VIc-h9-JmW"/>
                             <constraint firstItem="n4P-dn-xrH" firstAttribute="centerX" secondItem="OCM-62-z2p" secondAttribute="centerX" type="default" id="bPk-Yr-nHY"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="jzW-pP-rBd"/>
+                            <constraint firstItem="OCM-62-z2p" firstAttribute="top" secondItem="Q0g-NO-Z76" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ljP-nw-qfI"/>
                             <constraint firstItem="n4P-dn-xrH" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="opJ-sK-WPh"/>
                             <constraint firstItem="Q0g-NO-Z76" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="r0R-Cj-Dg4"/>
-                            <constraint firstItem="n4P-dn-xrH" firstAttribute="top" secondItem="3" secondAttribute="top" constant="374" id="y2I-eO-vfw"/>
                             <constraint firstItem="OCM-62-z2p" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="10" id="yKY-2H-RWH"/>
-                            <constraint firstAttribute="bottom" secondItem="n4P-dn-xrH" secondAttribute="bottom" constant="38" id="zWK-kf-vnT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="contentLabel" destination="kKi-rT-Bui" id="MZZ-Qt-zqy"/>
+                        <outlet property="bottomLabel" destination="y1y-JW-f5j" id="CBQ-mQ-akF"/>
+                        <outlet property="contentImageCaption" destination="jGJ-Gz-PJF" id="d5T-ZH-A9W"/>
+                        <outlet property="contentImageView" destination="phf-JW-Pl9" id="KDO-h4-rid"/>
                         <outlet property="contentView" destination="Q0g-NO-Z76" id="e04-xm-Emq"/>
                         <outlet property="dateView" destination="n4P-dn-xrH" id="B9d-g8-Evd"/>
                         <outlet property="timelineView" destination="OCM-62-z2p" id="QXJ-pY-OhT"/>
+                        <outlet property="topLabel" destination="kKi-rT-Bui" id="Npe-VW-SMk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -72,10 +105,13 @@
         <class className="TRTimelineViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TRTimelineViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="contentLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="bottomLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="contentImageCaption" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="contentImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="contentView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="dateView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="timelineView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="topLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>

@@ -16,7 +16,11 @@
 @property (nonatomic, retain) IBOutlet UIView *timelineView;
 @property (nonatomic, retain) IBOutlet UIView *contentView;
 @property (nonatomic, retain) IBOutlet UIView *dateView;
-@property (strong, nonatomic) IBOutlet UILabel *contentLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *topLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *contentImageView;
+@property (strong, nonatomic) IBOutlet UILabel *contentImageCaption;
+@property (strong, nonatomic) IBOutlet UILabel *bottomLabel;
 
 @property (nonatomic, retain, readonly) NSDictionary* nodes;
 @property (strong, retain) NSArray* dates;

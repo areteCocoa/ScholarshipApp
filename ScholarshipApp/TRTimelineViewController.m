@@ -17,7 +17,6 @@
 @property (nonatomic, retain) TRDialogView *dateLabel;
 
 @property (nonatomic, retain) NSMutableArray *nodeImageViews;
-@property (nonatomic, retain) NSMutableArray *imageRecognizers;
 
 @property int currentID;
 
@@ -27,13 +26,15 @@
 
 @property BOOL isDoneAnimating;
 
+@property NSArray *contentKeys;
+
 @end
 
 @implementation TRTimelineViewController
 
 @synthesize timelineView = _timelineView, contentView = _contentView, dateView = _dateView, nodes = _nodes,
-    nodeImageViews = _nodeImageViews, imageRecognizers = _imageRecognizers, dateLabel = _dateLabel;
-@synthesize contentLabel, dates;
+    nodeImageViews = _nodeImageViews, dateLabel = _dateLabel;
+@synthesize topLabel, dates;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,11 +61,23 @@
     UIPanGestureRecognizer *dateRecognizer =[[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(timelineInteracted:)];
     UIPanGestureRecognizer *timelineRecognizer =[[UIPanGestureRecognizer alloc] initWithTarget:self
                                                                                         action:@selector(timelineInteracted:)];
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(timelineInteracted:)];
+    
+    UISwipeGestureRecognizer *swipeLeftRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
+    swipeLeftRecognizer.direction = UISwipeGestureRecognizerDirectionLeft;
+    UISwipeGestureRecognizer *swipeRightRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
+    swipeRightRecognizer.direction = UISwipeGestureRecognizerDirectionRight;
+    
     self.dateView.userInteractionEnabled = YES;
     [self.dateView addGestureRecognizer:dateRecognizer];
     
     self.timelineView.userInteractionEnabled = YES;
     [self.timelineView addGestureRecognizer:timelineRecognizer];
+    [self.timelineView addGestureRecognizer:tapRecognizer];
+    
+    self.contentView.userInteractionEnabled = YES;
+    [self.contentView addGestureRecognizer:swipeRightRecognizer];
+    [self.contentView addGestureRecognizer:swipeLeftRecognizer];
     
     [NSTimer timerWithTimeInterval:1 target:self selector:@selector(displayID:) userInfo:self repeats:NO];
 }
@@ -89,41 +102,69 @@
         [formatter setDateFormat:@"yyyy MM dd"];
         
         // Some constants
-        // NSString *birthDate = [NSString stringWithFormat:@"%d %d %d", 1996, 1, 30];
-        // NSDate *birthday = [formatter dateFromString:birthDate];
+        // NSDate *birthday = [formatter dateFromString:@"1996 01 30"];
+        
+        NSDate *logo = [formatter dateFromString:@"2007 05 16"];
+        NSDate *C = [formatter dateFromString:@"2008 03 16"];
+        NSDate *basic = [formatter dateFromString:@"2009 10 06"];
+        
+        NSDate *highSchool = [formatter dateFromString:@"2010 09 07"];
+        
+        NSDate *python = [formatter dateFromString:@"2011 06 18"];
         
         NSDate *EVDate1 = [formatter dateFromString:@"2012 07 26"];
-        NSDate *EVDate2 = [formatter dateFromString:@"2012 08 12"];
-        NSDate *EVDate3 = [formatter dateFromString:@"2013 02 23"];
-        NSDate *EVDate4 = [formatter dateFromString:@"2013 03 02"];
+        NSDate *EVDate2 = [formatter dateFromString:@"2013 03 02"];
+        // Last commit 2013 03 02
         
-        NSArray *unsortedDates = @[[NSDate dateWithTimeIntervalSinceNow:0], EVDate1, EVDate2, EVDate3, EVDate4, [NSDate dateWithTimeIntervalSinceNow:60*60*24*5]];
+        NSDate *comboWizard = [formatter dateFromString:@"2013 03 10"];
+        
+        NSDate *today = [formatter dateFromString:@"2013 04 30"];
+        
+        NSArray *unsortedDates = @[python, C, EVDate1, EVDate2, logo, basic, highSchool, comboWizard, today];
         dates = [self sortDateArray:unsortedDates];
         
-        NSArray *contentProgress = @[@"Started Evolution Simulator", @"First 'working' build", @"Days before due date", @"Due date, final product", @"Today", [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timeline.png"]]];
+        // Define content views
+        // Do all this in .plist later
+        self.contentKeys = [NSArray arrayWithObjects:@"topText", @"image", @"captionText", @"bottomText", nil];
         
-        self.nodes = [[NSDictionary alloc] initWithObjects:contentProgress forKeys:dates];
+        NSDictionary *logoDictionary = [self contentDictionary:@"At age 11 I was introduced to LOGO in my fifth grade class." :[UIImage imageNamed:@"logo.png"] :@"ACSLogo: The first programming software I used" :@"From the moment I laid eyes on it I knew it was something great."];
+        
+        NSDictionary *CDictionary = [self contentDictionary:@"At age 12, my dad gave me K&R's C book" :[UIImage imageNamed:@"c_book"] :@"Still one of my favorite books" :@"I found things I could barely understand, but they intrigued me."];
+        
+        NSDictionary *basicDictionary = [self contentDictionary:@"At age 13, my math teacher showed us TI-BASIC" :[UIImage imageNamed:@"calc.png"] :@"My TI-84 with all my old programs" :@"BASIC running on TI calculators drove me to spend the majority of classes programming."];
+        
+        NSDictionary *highSchoolDictionary = [self contentDictionary:@"My first day of high school" :[UIImage imageNamed:@"highschool.png"] :@"14 year old me walking out the door" :@""];
+        
+        NSDictionary *pythonDictionary = [self contentDictionary:@"At age 15 I learned Python." :[UIImage imageNamed:@"python.png"] :@"My first big CS book." :@"I picked up a python book and just started learning on an old iMac that I had installed Ubuntu on."];
+        
+        NSDictionary *evolutionDictionary = [self contentDictionary:@"At age 16 I entered our school's science fair" :[UIImage imageNamed:@"evolution.png"] :@"The finished program" :@"After learning Java, I decided to write a simulator for evolution, another of my academic interests."];
+        
+        NSDictionary *evolutionResultDictionary = [self contentDictionary:@"At the science fair, I got to present my project " :[UIImage imageNamed:@"medal.png"] :@"My third place medal" :@"as well as talk to other devs my age. A very worthwhile experience."];
+        
+        NSDictionary *comboDictionary = [self contentDictionary:@"After the science fair a partner and I entered" :[UIImage imageNamed:@"combo.png"] :@"One of my level designs in action" :@"Clay.io's Got Game? contest. We had to make our game strictly in HTML5 and Javascript."];
+        
+        NSDictionary *todayDictionary = [self contentDictionary:@"Today I'm 17 and I attend Reynolds High School." :[UIImage imageNamed:@"me.png"] :@"" :@"I'm looking forward to working with computers in the future and seeing how far I can actually go."];
+        
+        NSArray *content = @[logoDictionary, CDictionary, basicDictionary, highSchoolDictionary, pythonDictionary, evolutionDictionary, evolutionResultDictionary, comboDictionary, todayDictionary];
+        
+        self.nodes = [[NSDictionary alloc] initWithObjects:content forKeys:dates];
         
         double minimumDate = [[dates objectAtIndex:0] timeIntervalSince1970];
         double maximumDate = [[dates lastObject] timeIntervalSince1970];
         double dateIncrement;
-        // double width = [[UIScreen mainScreen] bounds].size.width
         UIImage *node = [UIImage imageNamed:@"node.png"];
         double width = 300.0-node.size.width;
         
         for (NSDate *date in self.dates) {
             dateIncrement = ([date timeIntervalSince1970]-minimumDate)/(maximumDate-minimumDate);
             
-            UITapGestureRecognizer *imageRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                                              action:@selector(imageTapped:)];
-            
             UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(dateIncrement*width, 20, node.size.width, node.size.height)];
             imageView.userInteractionEnabled = YES;
-            [imageView addGestureRecognizer:imageRecognizer];
+            imageView.layer.opacity = .7;
             imageView.image = node;
             imageView.contentMode = UIViewContentModeCenter;
             
-            [self.imageRecognizers addObject:imageRecognizer];
+            // [self.imageRecognizers addObject:imageRecognizer];
             [self.nodeImageViews addObject:imageView];
             [self.timelineView addSubview:imageView];
         }
@@ -131,16 +172,40 @@
     return _nodes;
 }
 
-- (void)imageTapped:(UIGestureRecognizer*)sender {
-    [self displayID:[self.imageRecognizers indexOfObject:sender]];
+- (void)swipeRight:(UISwipeGestureRecognizer*)sender {
+    if (self.currentID > 0) [self displayID:self.currentID-1];
 }
 
+- (void)swipeLeft:(UISwipeGestureRecognizer*)sender {
+    if (self.currentID+1 < self.nodes.count) [self displayID:self.currentID+1];
+}
+
+// What ID should be displayed for the x location
 - (int)IDForTapLocation: (CGPoint) tap {
-    return tap.x/self.nodeWidth;
+    int closestID = 0;
+    float distance = 320;
+    for (UIImageView *imageView  in self.nodeImageViews) {
+        if (abs(imageView.frame.origin.x-tap.x) < distance) {
+            distance = abs(imageView.frame.origin.x-tap.x);
+            closestID = [self.nodeImageViews indexOfObject:imageView];
+        }
+    }
+    
+    return closestID;
 }
 
 - (void)displayID: (int)ID {
-    if (ID != self.currentID && [self.dateLabel.layer animationKeys].count <= 0) {
+    if (self.contentImageView.image == nil) {
+        ID = 0;
+    }
+    
+    if ((ID != self.currentID && [self.dateLabel.layer animationKeys].count <= 0) || self.contentImageView.image == nil) {
+        // Change old node
+        UIImageView *lastIndexImage = [self.nodeImageViews objectAtIndex:self.currentID];
+        lastIndexImage.image = [UIImage imageNamed:@"node.png"];
+        
+        self.currentID = ID;
+        
         // Move the dateLabel
         NSDate *indexedDate = [self.dates objectAtIndex:ID];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
@@ -152,12 +217,16 @@
         CGFloat x = indexedImage.frame.origin.x + (self.dateLabel.frame.size.width)/2;
         CGFloat width = self.nodeWidth;
         
-        x -= width;
+        /*
         if (x > self.dateView.frame.size.width/2) {
+            NSLog(@"Ahead of mid");
             x += indexedImage.frame.size.width/2;
         } else {
+            NSLog(@"Behind mid");
             x -= indexedImage.frame.size.width/2;
         }
+         */
+        x += indexedImage.frame.size.width - width;
         
         if (x < 10) {
             x = 10;
@@ -186,22 +255,14 @@
         
         // Change the content
         id contentObject = [self.nodes objectForKey:indexedDate];
-        for (UIView *view in [self.contentView subviews]) {
-            [view removeFromSuperview];
-        }
-        if ([contentObject isKindOfClass:[NSString class]]) {
-            contentLabel.text = [self.nodes objectForKey:indexedDate];
-            [self.contentView addSubview:self.contentLabel];
-        } else if([contentObject isKindOfClass:[UIView class]]) {
-            [self.contentView addSubview:contentObject];
+        if ([contentObject isKindOfClass:[NSDictionary class]]) {
+            [self changeContentView:contentObject];
+        } else {
+            // Clear content with empty dictionary
+            [self changeContentView:[NSDictionary dictionary]];
         }
         
-        
-        
-        // Edit the timeline to show selected node
-        UIImageView *lastIndexImage = [self.nodeImageViews objectAtIndex:self.currentID];
-        lastIndexImage.image = [UIImage imageNamed:@"node.png"];
-        
+        // Enlarge selected node
         indexedImage = [self.nodeImageViews objectAtIndex:ID];
         indexedImage.image = [UIImage imageNamed:@"node_big.png"];
         
@@ -210,7 +271,31 @@
         [self.dateView setNeedsDisplay];
     }
 }
+                                                                            
 
+- (void)changeContentView:(NSDictionary*)contentObject {
+    self.topLabel.text = nil;
+    self.contentImageView.image = nil;
+    self.contentImageCaption.text = nil;
+    self.bottomLabel.text = nil;
+    
+    NSString *topText = [contentObject valueForKey:@"topText"];
+    UIImage *image = [contentObject valueForKey:@"image"];
+    NSString *caption = [contentObject valueForKey:@"captionText"];
+    NSString *bottomText = [contentObject valueForKey:@"bottomText"];
+    
+    if (topText) self.topLabel.text = topText;
+    if (image) self.contentImageView.image = image;
+    if (caption) self.contentImageCaption.text = caption;
+    if (bottomText) self.bottomLabel.text = bottomText;
+}
+
+- (NSDictionary*)contentDictionary:(NSString*)topText :(UIImage*)image :(NSString*)caption :(NSString*)bottomText {
+    NSArray *values = [NSArray arrayWithObjects:topText, image, caption, bottomText, nil];
+    NSDictionary* contentDictionary = [[NSDictionary alloc] initWithObjects:values forKeys:self.contentKeys];
+    return contentDictionary;
+}
+                                                                              
 - (NSArray*)sortDateArray: (NSArray*) unsortedDates {
     NSArray *newDates = [unsortedDates sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
         NSDate* first = obj1;
@@ -227,13 +312,6 @@
         _nodeImageViews = [[NSMutableArray alloc] init];
     }
     return _nodeImageViews;
-}
-
-- (NSMutableArray*)imageRecognizers {
-    if (!_imageRecognizers) {
-        _imageRecognizers = [[NSMutableArray alloc] init];
-    }
-    return _imageRecognizers;
 }
 
 - (void)setNodes:(NSDictionary *)nodes {

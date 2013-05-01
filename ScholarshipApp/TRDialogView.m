@@ -25,7 +25,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-12)];
+        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, frame.size.width, frame.size.height-12)];
         self.dateLabel.textAlignment = NSTextAlignmentCenter;
         self.dateLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.9];
         self.dateLabel.layer.cornerRadius = 10;
@@ -43,15 +43,11 @@
     return self;
 }
 
-- (void)setFocusCGFloatX: (CGFloat) x {
-    
-}
-
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
+/*
 - (void)drawRect:(CGRect)rect
 {
-    /*
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     CGContextSetRGBFillColor(context, .5, .5, .5, .5);
@@ -65,8 +61,8 @@
     CGContextAddLineToPoint(context, (rightPoint.x + leftPoint.x)/2, rightPoint.y + 8);
     CGContextAddLineToPoint(context, rightPoint.x, rightPoint.y);
     CGContextFillPath(context);
-     */
 }
+*/
 
 - (NSString*)dateText {
     if (!_dateText) {
@@ -83,7 +79,7 @@
 
 - (void)setFrame:(CGRect)frame {
     [super setFrame:frame];
-    [self.dateLabel setFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-10)];
+    [self.dateLabel setFrame:CGRectMake(0, 12, frame.size.width, frame.size.height-10)];
 }
 
 @end
