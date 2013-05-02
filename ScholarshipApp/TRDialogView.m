@@ -25,44 +25,51 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 12, frame.size.width, frame.size.height-12)];
+        /*
+        self.dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, frame.size.width, frame.size.height-12)];
         self.dateLabel.textAlignment = NSTextAlignmentCenter;
         self.dateLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:.9];
-        self.dateLabel.layer.cornerRadius = 10;
+        self.dateLabel.layer.cornerRadius = 5;
         self.dateLabel.layer.masksToBounds = YES;
         self.dateLabel.font = [UIFont fontWithName:self.dateLabel.font.familyName size:16.0f];
+         */
         
-        [self addSubview: self.dateLabel];
+        // [self addSubview: self.dateLabel];
         
-        self.layer.cornerRadius = 10;
+        self.backgroundColor = [UIColor colorWithWhite:.5 alpha:1];
+        self.layer.cornerRadius = 5;
         self.layer.masksToBounds = YES;
-        self.backgroundColor = [UIColor colorWithWhite:.5 alpha:0];
-        
-        self.dateLabel.backgroundColor = [self.backgroundColor colorWithAlphaComponent:.5];
     }
     return self;
 }
 
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
-/*
 - (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
-
-    CGContextSetRGBFillColor(context, .5, .5, .5, .5);
-    CGContextSetLineWidth(context, 5);
     
-    CGPoint rightPoint = CGPointMake(self.dateLabel.frame.size.width-10, self.dateLabel.frame.size.height);
-    CGPoint leftPoint =  CGPointMake(self.dateLabel.frame.size.width-30, self.dateLabel.frame.size.height);
+    CGGradientRef glossGradient;
+    CGColorSpaceRef rgbColorspace;
+    size_t num_locations = 2;
+    CGFloat locations[2] = { 0.0, 1.0 };
+    CGFloat components[8] = { .8, .8, .8, 1,  // Start color
+        .6, .6, .6, 1 }; // End color
     
-    CGContextMoveToPoint(context, rightPoint.x, rightPoint.y);
-    CGContextAddLineToPoint(context, leftPoint.x, leftPoint.y);
-    CGContextAddLineToPoint(context, (rightPoint.x + leftPoint.x)/2, rightPoint.y + 8);
-    CGContextAddLineToPoint(context, rightPoint.x, rightPoint.y);
-    CGContextFillPath(context);
+    rgbColorspace = CGColorSpaceCreateDeviceRGB();
+    glossGradient = CGGradientCreateWithColorComponents(rgbColorspace, components, locations, num_locations);
+    
+    CGPoint topCenter = CGPointMake(CGRectGetMidX(rect), 0.0f);
+    CGPoint endCenter = CGPointMake(CGRectGetMidX(rect), rect.size.height);
+    CGContextDrawLinearGradient(context, glossGradient, topCenter, endCenter, 0);
+    
+    CGGradientRelease(glossGradient);
+    CGColorSpaceRelease(rgbColorspace);
+    
+    CGContextSetRGBFillColor(context, 1, 1, 1, .9);
+    CGRect textRect = CGRectMake(0, CGRectGetMidY(rect)/2 - 2, rect.size.width, CGRectGetMidY(rect));
+    [self.dateText drawInRect:textRect withFont:[UIFont fontWithName:@"Helvetica Neue" size:16.0] lineBreakMode:NSLineBreakByClipping alignment:NSTextAlignmentCenter];
 }
-*/
 
 - (NSString*)dateText {
     if (!_dateText) {
@@ -73,7 +80,6 @@
 
 - (void)setDateText:(NSString *)dateText {
     _dateText = dateText;
-    self.dateLabel.text = dateText;
     [self setNeedsDisplay];
 }
 

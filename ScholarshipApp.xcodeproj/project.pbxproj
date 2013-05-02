@@ -11,6 +11,7 @@
 		5405DEA2172F8E2300B688A5 /* node_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 5405DEA1172F8E2300B688A5 /* node_big.png */; };
 		5405DEA4172F901D00B688A5 /* timeline.png in Resources */ = {isa = PBXBuildFile; fileRef = 5405DEA3172F901D00B688A5 /* timeline.png */; };
 		5405DEA7172F929300B688A5 /* TRDialogView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5405DEA6172F929300B688A5 /* TRDialogView.m */; };
+		540A95CB1732031400126080 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 540A95CA1732031400126080 /* QuartzCore.framework */; };
 		542DA861172E441A007A4203 /* TRTimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 542DA860172E441A007A4203 /* TRTimelineViewController.m */; };
 		544FDA381730B50400D9BCF6 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 544FDA371730B50400D9BCF6 /* logo.png */; };
 		54A5C756172C5FEE009EA073 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A5C755172C5FEE009EA073 /* UIKit.framework */; };
@@ -41,6 +42,7 @@
 		5405DEA3172F901D00B688A5 /* timeline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeline.png; sourceTree = "<group>"; };
 		5405DEA5172F929300B688A5 /* TRDialogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRDialogView.h; sourceTree = "<group>"; };
 		5405DEA6172F929300B688A5 /* TRDialogView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRDialogView.m; sourceTree = "<group>"; };
+		540A95CA1732031400126080 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		542DA85F172E441A007A4203 /* TRTimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRTimelineViewController.h; sourceTree = "<group>"; };
 		542DA860172E441A007A4203 /* TRTimelineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRTimelineViewController.m; sourceTree = "<group>"; };
 		544FDA371730B50400D9BCF6 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				540A95CB1732031400126080 /* QuartzCore.framework in Frameworks */,
 				54A5C756172C5FEE009EA073 /* UIKit.framework in Frameworks */,
 				54A5C758172C5FEE009EA073 /* Foundation.framework in Frameworks */,
 				54A5C75A172C5FEE009EA073 /* CoreGraphics.framework in Frameworks */,
@@ -87,6 +90,7 @@
 		54A5C749172C5FEE009EA073 = {
 			isa = PBXGroup;
 			children = (
+				540A95CA1732031400126080 /* QuartzCore.framework */,
 				54BBA56D1730E66100DDDA2C /* Icon-Small.png */,
 				54BBA5671730E5EE00DDDA2C /* Icon.png */,
 				54A5C75B172C5FEE009EA073 /* ScholarshipApp */,
