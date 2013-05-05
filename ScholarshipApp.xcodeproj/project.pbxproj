@@ -346,10 +346,12 @@
 		54A5C777172C5FEE009EA073 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScholarshipApp/ScholarshipApp-Prefix.pch";
 				INFOPLIST_FILE = "ScholarshipApp/ScholarshipApp-Info.plist";
 				PRODUCT_NAME = "Timeline Me";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
